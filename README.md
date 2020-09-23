@@ -5,4 +5,4 @@
 
 ## Deploy
 
-ansible-playbook -e "hosts=localhost" -e -e "user=carlos" run.yml
+ansible-playbook -e "hosts=localhost" -e "user=carlos" run.yml
