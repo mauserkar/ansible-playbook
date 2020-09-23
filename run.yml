@@ -1,0 +1,16 @@
+---
+- hosts: "{{ hosts }}"
+  gather_facts: true
+  remote_user: 
+  vars: 
+    user: "{{ user }}"
+  roles:
+    - users.admin
+    - packages
+    - repo
+    - users
+    - provisioning
+    - hostname
+    - files
+
+# ansible-playbook -e "hosts=localhost" -e "user=carlos" run.yml

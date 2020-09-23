@@ -1,0 +1,58 @@
+---
+- name: user admin 
+  user:
+    name: "{{ user }}"
+    groups: sudo
+    shell: /bin/bash
+    password: "{{ admin_pwd }}"
+
+- name: dir ssh
+  file:
+    path: "/home/{{user}}/.ssh"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0775
+
+- name: dir log
+  file:
+    path: "{{ an_log }}"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0775
+
+- name: dir history Users
+  file:
+    path: "{{ an_log }}/history"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0775
+
+- name: history file"
+  file:
+    path: "{{ an_log }}/history-{{ user }}.log"
+    state: touch
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0600
+
+- name: dir local
+  file:
+    path: "{{ an_local }}"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0775
+
+- name: copy ansible.pub
+  copy:
+    src: "{{ an_path_local }}/files/ansible.pub"
+    dest: "/home/{{ user }}/.ssh/authorized_keys"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0600
+
+- name: add sudoers
+  shell: echo '{{ user }} ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers

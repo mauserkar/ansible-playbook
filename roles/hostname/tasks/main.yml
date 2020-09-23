@@ -1,0 +1,24 @@
+---
+- name: Change hostname in /etc/hostname
+  shell: echo {{ inventory_hostname }} > /etc/hostname
+
+- name: Update hostname
+  shell: hostname {{ inventory_hostname }}
+
+- name: remove any localhost /etc/hosts
+  lineinfile:
+    dest: /etc/hosts
+    regexp: '^127\.0\.0\.1'
+    state: absent
+
+- name: Update with hostname /etc/hosts
+  lineinfile:
+    dest: /etc/hosts
+    line: '127.0.0.1 localhost'
+    insertbefore: 'BOF'
+
+- name: Update with hostname /etc/hosts
+  lineinfile:
+    dest: /etc/hosts
+    line: '127.0.0.1 {{ inventory_hostname }}'
+    insertafter: '^127\.0\.0\.1'
