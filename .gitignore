@@ -1,3 +1,4 @@
 files/.ansible.log
 files/.ansible-vault-password
 files/ansible.key
+dev/*.log

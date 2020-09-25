@@ -1,0 +1,25 @@
+Vagrant.configure("2") do |config|
+  config.vm.define "vm1" do |vm1|
+    vm1.vm.box = "ubuntu/xenial64"
+    vm1.vm.hostname = 'vm1'
+    vm1.vm.network :private_network, ip: "10.10.1.16"
+    vm1.vm.provision :shell, :path => "bootstrap.sh"
+    vm1.vm.provider :virtualbox do |v|
+      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      v.customize ["modifyvm", :id, "--memory", 1024]
+      v.customize ["modifyvm", :id, "--name", "vm1"]
+    end
+  end
+
+  config.vm.define "vm2" do |vm2|
+    vm2.vm.box = "ubuntu/xenial64"
+    vm2.vm.hostname = 'vm2'
+    vm2.vm.network :private_network, ip: "10.10.2.16"
+    vm2.vm.provision :shell, :path => "bootstrap.sh"
+    vm2.vm.provider :virtualbox do |v|
+      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      v.customize ["modifyvm", :id, "--memory", 1024]
+      v.customize ["modifyvm", :id, "--name", "vm2"]
+    end
+  end
+end

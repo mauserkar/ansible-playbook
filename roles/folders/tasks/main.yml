@@ -1,0 +1,9 @@
+---
+- name: create folder
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0775
+  with_items: folder_list

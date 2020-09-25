@@ -14,22 +14,6 @@
     group: "{{ user }}"
     mode: 0775
 
-- name: dir log
-  file:
-    path: "{{ an_log }}"
-    state: directory
-    owner: "{{ user }}"
-    group: "{{ user }}"
-    mode: 0775
-
-- name: dir history Users
-  file:
-    path: "{{ an_log }}/history"
-    state: directory
-    owner: "{{ user }}"
-    group: "{{ user }}"
-    mode: 0775
-
 - name: history file"
   file:
     path: "{{ an_log }}/history-{{ user }}.log"
@@ -37,14 +21,6 @@
     owner: "{{ user }}"
     group: "{{ user }}"
     mode: 0600
-
-- name: dir local
-  file:
-    path: "{{ an_local }}"
-    state: directory
-    owner: "{{ user }}"
-    group: "{{ user }}"
-    mode: 0775
 
 - name: copy ansible.pub
   copy:
