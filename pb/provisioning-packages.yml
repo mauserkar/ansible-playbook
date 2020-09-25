@@ -1,0 +1,35 @@
+---
+- name: "Update"
+  include_role:
+    name: packages
+    tasks_from: update
+
+- name: "Upgrade"
+  include_role:
+    name: packages
+    tasks_from: upgrade
+
+- name: "Packages"
+  include_role:
+    name: packages
+    tasks_from: install
+  with_items:
+    - apache2-utils
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - git
+    - gnupg
+    - gnupg-agent
+    - gnupg2
+    - jq
+    - lsb-release
+    - python3
+    - python3-pip
+    - rpl
+    - software-properties-common
+    - telnet
+    - tree
+    - unzip
+    - wget
+    - traceroute

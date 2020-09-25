@@ -1,0 +1,12 @@
+---
+- hosts: "{{ an_hosts }}"
+  gather_facts: false
+  remote_user: 
+  vars: 
+    user: "{{ an_user }}"
+  tasks:
+    - name: Provisioning - config
+      include: pb/provisioning-config.yml
+    - name: Provisioning - packages
+      include: pb/provisioning-packages.yml
+

@@ -1,7 +1,8 @@
 ---
-- name: Create folder ansible deploy
+- name: Folder ansible workspace
   include_role:
-    name: 'folders'
+    name: filesystem
+    tasks_from: folder
   with_items:
     - '{{ an_path }}'
     - '{{ an_repos }}'

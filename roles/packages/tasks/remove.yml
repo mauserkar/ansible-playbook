@@ -1,0 +1,6 @@
+---
+- name: "Remove package: {{ item }}"
+  apt:
+    pkg:
+      - "{{ item }}"
+    state: present

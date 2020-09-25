@@ -1,0 +1,4 @@
+---
+- name: apt-get upgrade
+  apt:
+    upgrade: dist

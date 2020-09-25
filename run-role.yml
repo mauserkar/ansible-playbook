@@ -1,0 +1,12 @@
+---
+- hosts: "{{ an_hosts }}"
+  gather_facts: false
+  remote_user: 
+  vars: 
+    user: "{{ an_user }}"
+  roles:
+    - filesystem
+    - hostname
+    - packages
+    # - repo
+    # - users
