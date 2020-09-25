@@ -1,13 +1,11 @@
 ---
-- name: create folder ansible deploy
+- name: Create folder ansible deploy
   include_role:
     name: 'folders'
-  loop:
+  with_items:
     - '{{ an_path }}'
     - '{{ an_repos }}'
     - '{{ an_tmp }}'
     - '{{ an_local }}'
     - '{{ an_log }}'
     - '{{ an_log }}/history'
-  loop_control:
-    loop_var: folder_list   
