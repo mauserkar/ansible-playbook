@@ -1,5 +1,5 @@
 ---
-- name: Folder ansible workspace
+- name: Folder workspace
   include_role:
     name: filesystem
     tasks_from: folder
@@ -10,3 +10,19 @@
     - '{{ an_local }}'
     - '{{ an_log }}'
     - '{{ an_log }}/history'
+
+- name: Config - aliases
+  include_role:
+    name: filesystem
+    tasks_from: conf-aliases
+
+- name: Config - sysctl
+  include_role:
+    name: filesystem
+    tasks_from: conf-sysctl
+
+- name: Config - locale
+  vars: 
+    - an_location: es_ES.UTF-8
+  include_role:
+    name: locale

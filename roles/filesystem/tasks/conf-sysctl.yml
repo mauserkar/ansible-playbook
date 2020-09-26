@@ -1,0 +1,9 @@
+---
+- name: Config files - sysctl 
+  blockinfile:
+    path: /etc/sysctl.conf
+    block: |
+      *             soft    nofile  99901
+      *             hard    nofile  99901
+      *             soft    core    unlimited
+      *             hard    core    unlimited

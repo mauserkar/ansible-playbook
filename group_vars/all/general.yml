@@ -1,4 +1,7 @@
+# Local host
 an_path_local: '.'
+
+# Common vars
 an_path: '/opt/setup-ansible'
 an_log: '/opt/setup-ansible/logs'
 an_local: '/opt/setup-ansible/local'

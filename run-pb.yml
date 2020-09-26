@@ -1,12 +1,15 @@
 ---
 - hosts: "{{ an_hosts }}"
-  gather_facts: false
-  remote_user: 
+  gather_facts: true
+  remote_user: "{{ an_user }}"
+  # vars_files:                                     # include by roles
+  #   - group_vars/all/general.yml                  # include by roles
+  #   - group_vars/all/secrets.yml                  # include by roles
   vars: 
     user: "{{ an_user }}"
   tasks:
     - name: Provisioning - config
       include: pb/provisioning-config.yml
+
     - name: Provisioning - packages
       include: pb/provisioning-packages.yml
-

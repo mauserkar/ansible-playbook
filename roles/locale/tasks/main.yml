@@ -1,0 +1,10 @@
+---
+- name: Locale - set
+  locale_gen:
+    name: "{{ an_location }}"
+    state: present
+
+- name: "Locale - /etc/environment"
+  lineinfile:
+    path: /etc/environment
+    line: 'LC_ALL=\"{{ an_location }}\'

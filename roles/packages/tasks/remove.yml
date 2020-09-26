@@ -3,4 +3,5 @@
   apt:
     pkg:
       - "{{ item }}"
-    state: present
+    state: absent
+    purge: yes

@@ -1,0 +1,47 @@
+---
+- name: Config files - aliases
+  blockinfile:
+    path: /etc/bash.bashrc
+    block: |
+        # Set History
+        export HISTTIMEFORMAT="%F %T: "
+        export HISTFILE={{ an_log }}/history/history-$(whoami | awk '{print $1}' ; exit).log
+        export PROMPT_COMMAND='history -a'
+
+        # Directories
+        alias cd-an-path="{{ an_path }}"
+        alias cd-an-log="{{ an_log }}"
+        alias cd-an-local="{{ an_local }}"
+        alias cd-an-repos="{{ an_repos }}"
+        alias cd-an-tmp="{{ an_tmp }}"
+
+        # Files
+        alias find-big="find . -type f -exec ls -s {} \; | sort -n -r | head -5"
+        alias find-locate='find . | grep'
+        alias execute='chmod +x'
+        alias kk='ls -lathr'
+        alias ls='ls --color=always'
+        alias ll='ls $LS_OPTIONS -lha'
+        alias sl='ls $LS_OPTIONS -lha'
+        
+        # Docker
+        alias d-ps='docker ps -a'
+        alias d-sa='docker stop $(docker ps -aq)'
+        alias d-ra='docker rm $(docker ps -aq)'
+        alias d-it='docker exec -it '
+        
+        # System
+        alias ram-info='free -m -l -t'
+        alias cpu-info='lscpu'
+        alias disc-info='df -h -x tmpfs -x devpts -x usbfs'
+        alias partition-info='lsblk -fm'
+        alias du='du -ch'
+        alias tailf='tail -f'
+
+        # Mount
+        alias mount="mount | column -t"
+
+        # Python
+        alias py-requirements='pip freeze > requirements.txt'
+        alias py-env-new="python -m venv /tmp/env-$(date +%H%M%S-%d%m%Y) && source /tmp/env-$(date +%H%M%S-%d%m%Y)/bin/activate"
+        

@@ -12,8 +12,6 @@ ssh_key_dev:
 	@if [ ! -f files/${SSH_KEY}.key ]; then ssh-keygen -t rsa -b 4096 -f files/${SSH_KEY}.key; fi
 	PUB_KEY=`cat files/${SSH_KEY}.pub`
 	sed -i "s/paste_you_key.pub/${PUB_KEY}g" dev/bootstrap.sh
-ap_run_role:
-	ansible-playbook -e "an_hosts=${AN_HOSTS}" -e "an_user=${AN_USER}" run-role.yml
 ap_run_pb:
 	ansible-playbook -e "an_hosts=${AN_HOSTS}" -e "an_user=${AN_USER}" run-pb.yml
 vagrant_up:
