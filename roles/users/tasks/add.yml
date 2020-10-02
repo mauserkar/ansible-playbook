@@ -1,0 +1,35 @@
+---
+- name: "user - {{ item.user }} - add"
+  user:
+    name: "{{ item.user }}"
+    shell: /bin/bash
+    password: "{{ item.pwd }}"
+
+- name: user - ssh dir
+  file:
+    path: "/home/{{ item.user }}/.ssh"
+    state: directory
+    owner: "{{ item.user }}"
+    group: "{{ item.user }}"
+    mode: 0775
+
+- name: user - history log
+  file:
+    path: "{{ an_log }}/history-{{ item.user }}.log"
+    state: touch
+    owner: "{{ item.user }}"
+    group: "{{ item.user }}"
+    mode: 0600
+
+- name: user - authorized key
+  authorized_key:
+    user: "{{ item.user }}"
+    state: present
+    key: "{{ lookup('file', '{{ an_path_local }}/files/{{ item.user }}.pub') }}"
+
+- name: user - add sudoers
+  lineinfile:
+    path: /etc/sudoers
+    line: "{{ item.user }} ALL=(ALL) NOPASSWD:ALL"
+  when: an_admin|bool == true
+

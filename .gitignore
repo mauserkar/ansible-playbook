@@ -1,4 +1,5 @@
 files/.ansible.log
 files/.ansible-vault-password
-files/ansible.key
+files/*.key
 dev/*.log
+dev/.vagrant

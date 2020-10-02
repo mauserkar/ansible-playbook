@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 apt-get update
-# install python
 apt-get install python python-pip -q -y
-
 echo "paste_you_ansible.pub" >> /home/vagrant/.ssh/authorized_keys
+echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCwJ+HtOoB/stCQgJswECfQ9oOaqlViCuLkEo1Yn8+B51WPO95cN1OVn+rT0ZUjX3lE+GS8/H4coY7onOAl2xy7uMCfdPhoGuleLgRzTulgRIvPXzbaxQ3Ww10BzT+AVBaQjFqyjfghhd+Ilua0tEnZmdjaWkq8ZXuVPn73r7CBl6R/p30vLxuUfgB7J3/lypqWj9Z3s3HKUwYQt8BVAymek2zJ3UgWlbufLTdxm/bImPv2nOecV7xm+92C38bIoETGHknWFvabGkoD7eIoHPhfhQ20a4J2K9aD6HjnuRAoyaLOJipWVt1uwWkCvi6Ih+SB+DdPYt4t4w4lqt69c+Zltzdf8EuUp5jXiDudT8lx9XsjukKLXCyjwGdMezG9sH61dNAivUVEMAYmF4HL7CIubNDd864RWe6Yw46i6wXc1uXn8oUfQK9TscRdHrR8A9asysLvVDSa6IYMS7/EOqMI7F/39mxu4bpESIYVIH2V7XfVoKdQLjdt834aRqeWYot3JColVNVCJR6F3QVhJw6exgC5MZ7Asfy5me2D/A5OK9jiMvn5Zp4+yYLG7+UPGl6EkEWHaaCj3fZ8R0ln3uM5s1dOPCg536YaUX5Bdp68cDOZp4WXA3gT8bN87qARpFKkzDgawjJKvrWnQWAu/nPEzYdquMKO0OnHLdqjFPj3xw== dev-vagrant.pub" >> /home/vagrant/.ssh/authorized_keys

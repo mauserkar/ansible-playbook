@@ -1,8 +1,8 @@
 ---
-- name: "Create folder: {{ item }}"
+- name: "Create folder: {{ item.folder }}"
   file:
-    path: "{{ item }}"
+    path: "{{ item.folder }}"
     state: directory
-    owner: "{{ user }}"
-    group: "{{ user }}"
+    owner: "{{ item.user }}"
+    group: "{{ item.user }}"
     mode: 0775

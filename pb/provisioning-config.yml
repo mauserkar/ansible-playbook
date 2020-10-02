@@ -4,12 +4,12 @@
     name: filesystem
     tasks_from: folder
   with_items:
-    - '{{ an_path }}'
-    - '{{ an_repos }}'
-    - '{{ an_tmp }}'
-    - '{{ an_local }}'
-    - '{{ an_log }}'
-    - '{{ an_log }}/history'
+    - { folder: '{{ an_path }}', user: '{{ an_user_deploy }}' }
+    - { folder: '{{ an_repos }}', user: '{{ an_user_deploy }}' }
+    - { folder: '{{ an_tmp }}', user: '{{ an_user_deploy }}' }
+    - { folder: '{{ an_local }}', user: '{{ an_user_deploy }}' }
+    - { folder: '{{ an_log }}', user: '{{ an_user_deploy }}' }
+    - { folder: '{{ an_log }}/history', user: '{{ an_user_deploy }}' }
 
 - name: Config - aliases
   include_role:

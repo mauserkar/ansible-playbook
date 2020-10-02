@@ -1,0 +1,17 @@
+---
+- name: ssh - config 
+  blockinfile:
+    path: /home/{{ item }}/.ssh/config
+    block: |
+      Host *
+      IdentityFile    ~/.ssh/{{ item }}.key
+      StrictHostKeyChecking no
+    create: yes
+    mode: 0644
+
+- name: ssh - {{ item }}.key
+  copy:
+    src: "{{ an_path_local }}/files/{{ item }}.key"
+    dest: "/home/{{ item }}/.ssh/{{ item }}.key"
+    owner: "{{ item }}"
+    mode: 0600
