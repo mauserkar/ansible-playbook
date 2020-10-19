@@ -33,3 +33,4 @@
     - unzip
     - wget
     - traceroute
+    - dnsutils
