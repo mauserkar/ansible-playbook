@@ -4,16 +4,16 @@
     path: /etc/bash.bashrc
     block: |
         # Ansible deploy
-        export AN_PATH="/opt/setup-ansible"
-        export AN_LOG="/opt/setup-ansible/logs"
-        export AN_LOCAL="/opt/setup-ansible/local"
-        export AN_REPOS="/opt/setup-ansible/repos"
-        export AN_TMP="/opt/setup-ansible/tmp"
-        alias cd_an_path="{{ an_path }}"
-        alias cd_an_log="{{ an_log }}"
-        alias cd_an_local="{{ an_local }}"
-        alias cd_an_repos="{{ an_repos }}"
-        alias cd_an_tmp="{{ an_tmp }}"
+        export AN_PATH="{{ an_path }}"
+        export AN_LOG="{{ an_log }}"
+        export AN_LOCAL="{{ an_local }}"
+        export AN_REPOS="{{ an_repos }}"
+        export AN_TMP="{{ an_tmp }}"
+        alias cd_an_path="cd {{ an_path }}"
+        alias cd_an_log="cd {{ an_log }}"
+        alias cd_an_local=cd "{{ an_local }}"
+        alias cd_an_repos="cd {{ an_repos }}"
+        alias cd_an_tmp="cd {{ an_tmp }}"
 
         # Set History
         export HISTTIMEFORMAT="%F %T: "
