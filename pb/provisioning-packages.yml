@@ -14,24 +14,38 @@
     name: packages
     tasks_from: install
   with_items:
+    - ansible
     - apache2-utils
     - apt-transport-https
+    - bridge-utils
     - ca-certificates
     - curl
     - dnsutils
+    - geoip-bin
     - git
     - gnupg
     - gnupg-agent
     - gnupg2
+    - htop
+    - iftop
+    - iotop
     - jq
     - lsb-release
+    - nano
+    - ncdu
+    - net-tools
+    - nmap
+    - ntp
     - python3
     - python3-pip
     - rpl
+    - screen
     - software-properties-common
+    - sysstat
     - telnet
     - traceroute
     - tree
     - unzip
     - vim
     - wget
+    - whois
