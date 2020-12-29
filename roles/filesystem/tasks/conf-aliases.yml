@@ -11,7 +11,7 @@
         export AN_TMP="{{ an_tmp }}"
         alias cd_an_path="cd {{ an_path }}"
         alias cd_an_log="cd {{ an_log }}"
-        alias cd_an_local=cd "{{ an_local }}"
+        alias cd_an_local="cd {{ an_local }}"
         alias cd_an_repos="cd {{ an_repos }}"
         alias cd_an_tmp="cd {{ an_tmp }}"
 
