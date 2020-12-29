@@ -9,7 +9,7 @@
         export AN_LOCAL="/opt/setup-ansible/local"
         export AN_REPOS="/opt/setup-ansible/repos"
         export AN_TMP="/opt/setup-ansible/tmp"
-        alias cd_an_path"{{ an_path }}"
+        alias cd_an_path="{{ an_path }}"
         alias cd_an_log="{{ an_log }}"
         alias cd_an_local="{{ an_local }}"
         alias cd_an_repos="{{ an_repos }}"

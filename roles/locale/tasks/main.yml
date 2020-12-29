@@ -7,4 +7,4 @@
 - name: "Locale - /etc/environment"
   lineinfile:
     path: /etc/environment
-    line: 'LC_ALL="{{ an_location }}'
+    line: 'LC_ALL="{{ an_location }}"'
