@@ -1,5 +1,7 @@
 files/.ansible.log
 files/.ansible-vault-password
 files/*.key
+files/*.pub
+files/prd-inventory.ini
 dev/*.log
 dev/.vagrant

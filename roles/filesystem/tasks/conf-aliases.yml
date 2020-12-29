@@ -3,21 +3,26 @@
   blockinfile:
     path: /etc/bash.bashrc
     block: |
+        # Ansible deploy
+        export AN_PATH="/opt/setup-ansible"
+        export AN_LOG="/opt/setup-ansible/logs"
+        export AN_LOCAL="/opt/setup-ansible/local"
+        export AN_REPOS="/opt/setup-ansible/repos"
+        export AN_TMP="/opt/setup-ansible/tmp"
+        alias cd_an_path"{{ an_path }}"
+        alias cd_an_log="{{ an_log }}"
+        alias cd_an_local="{{ an_local }}"
+        alias cd_an_repos="{{ an_repos }}"
+        alias cd_an_tmp="{{ an_tmp }}"
+
         # Set History
         export HISTTIMEFORMAT="%F %T: "
         export HISTFILE={{ an_log }}/history/history-$(whoami | awk '{print $1}' ; exit).log
         export PROMPT_COMMAND='history -a'
 
-        # Directories
-        alias cd-an-path="{{ an_path }}"
-        alias cd-an-log="{{ an_log }}"
-        alias cd-an-local="{{ an_local }}"
-        alias cd-an-repos="{{ an_repos }}"
-        alias cd-an-tmp="{{ an_tmp }}"
-
         # Files
-        alias find-big="find . -type f -exec ls -s {} \; | sort -n -r | head -5"
-        alias find-locate='find . | grep'
+        alias find_big="find . -type f -exec ls -s {} \; | sort -n -r | head -5"
+        alias find_locate='find . | grep'
         alias execute='chmod +x'
         alias kk='ls -lathr'
         alias ls='ls --color=always'
@@ -25,16 +30,16 @@
         alias sl='ls $LS_OPTIONS -lha'
         
         # Docker
-        alias d-ps='docker ps -a'
-        alias d-sa='docker stop $(docker ps -aq)'
-        alias d-ra='docker rm $(docker ps -aq)'
-        alias d-it='docker exec -it '
+        alias d_ps='docker ps -a'
+        alias d_sa='docker stop $(docker ps -aq)'
+        alias d_ra='docker rm $(docker ps -aq)'
+        alias d_it='docker exec -it '
         
         # System
-        alias ram-info='free -m -l -t'
-        alias cpu-info='lscpu'
-        alias disc-info='df -h -x tmpfs -x devpts -x usbfs'
-        alias partition-info='lsblk -fm'
+        alias ram_info='free -m -l -t'
+        alias cpu_info='lscpu'
+        alias disc_info='df -h -x tmpfs -x devpts -x usbfs'
+        alias partition_info='lsblk -fm'
         alias du='du -ch'
         alias tailf='tail -f'
 
@@ -42,6 +47,35 @@
         alias mount="mount | column -t"
 
         # Python
-        alias py-requirements='pip freeze > requirements.txt'
-        alias py-env-new="python -m venv /tmp/env-$(date +%H%M%S-%d%m%Y) && source /tmp/env-$(date +%H%M%S-%d%m%Y)/bin/activate"
-        
+        alias py_requirements='pip freeze > requirements.txt'
+        py_env() {
+          if [ $1 ] ; then
+            NAME=$1
+            if [ -d /tmp/py-$NAME ] ; then
+              source source /tmp/py-$NAME/bin/activate
+            else
+              python -m venv /tmp/py-$NAME && source /tmp/py-$NAME/bin/activate
+            fi
+          else
+            python -m venv /tmp/py-venv-$(date +%H%M-%d%m%Y) && source /tmp/py-venv-$(date +%H%M-%d%m%Y)/bin/activate
+          fi
+        }
+
+        # Ansible
+        alias an_hello='ansible all -a "/bin/echo hello"'
+        alias an_ping='ansible -m ping'
+        an_fact() { ansible $1 -m setup; }
+        alias ap='ansible-playbook'
+        alias ap_d='ansible-playbook --diff'
+        alias ap_dc='ansible-playbook --diff --check'
+
+        # Networking
+        alias net_ip_private="ifconfig | grep inet | egrep -v 'inet6|127.0'"
+        alias net_ip_public='curl http://icanhazip.com/'
+        net_ip_geolocation () { curl ipinfo.io/$1; }
+        alias net_ip_tables_list="sudo /sbin/iptables -L -n -v --line-numbers"
+        alias net_ip_tables_input='sudo /sbin/iptables -L INPUT -n -v --line-numbers'
+        alias net_ip_tables_output='sudo /sbin/iptables -L OUTPUT -n -v --line-numbers'
+        alias net_ip_tables_forward='sudo /sbin/iptables -L FORWARD -n -v --line-numbers'
+        alias net_ports='netstat -tulanp'
+        net_check_open_port () { nc -z -v -w1 $1 $2; }

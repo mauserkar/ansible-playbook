@@ -18,6 +18,7 @@
     - apt-transport-https
     - ca-certificates
     - curl
+    - dnsutils
     - git
     - gnupg
     - gnupg-agent
@@ -29,8 +30,8 @@
     - rpl
     - software-properties-common
     - telnet
+    - traceroute
     - tree
     - unzip
+    - vim
     - wget
-    - traceroute
-    - dnsutils
