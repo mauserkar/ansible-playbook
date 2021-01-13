@@ -1,0 +1,6 @@
+---
+- name: "pip - packages: {{ item }}"
+  pip:
+    name: 
+      - "{{ item }}"
+    state: present

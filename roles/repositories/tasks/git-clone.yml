@@ -1,0 +1,7 @@
+---
+- name: "Clone repo: {{ item.repo_dest }}"
+  git:
+    repo: "{{ item.repo_url }}"
+    dest: "{{ item.repo_dest }}"
+    force: yes
+    accept_hostkey: yes

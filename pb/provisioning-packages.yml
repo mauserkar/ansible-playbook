@@ -9,7 +9,7 @@
     name: packages
     tasks_from: upgrade
 
-- name: "Packages"
+- name: "Packages install"
   include_role:
     name: packages
     tasks_from: install
@@ -50,3 +50,55 @@
     - vim
     - wget
     - whois
+
+- name: symbolic link - pip 
+  file:
+    src: /usr/bin/pip3
+    dest: /usr/bin/pip
+    state: link
+
+- name: symbolic link - python 
+  file:
+    src: /usr/bin/python3
+    dest: /usr/bin/python
+    state: link
+
+- name: "repositories - gpg add"
+  include_role:
+    name: repositories
+    tasks_from: gpg-add
+  with_items:
+    - https://download.docker.com/linux/{{ansible_distribution|lower}}/gpg
+
+- name: "repositories - apt add repo"
+  include_role:
+    name: repositories
+    tasks_from: apt-add
+  with_items:
+    - deb [arch=amd64] https://download.docker.com/linux/{{ansible_distribution|lower}} {{ansible_distribution_release}} stable
+
+- name: "Packages - install with custom repo"
+  include_role:
+    name: packages
+    tasks_from: install
+  with_items:
+    - containerd.io
+    - docker-ce
+    - docker-ce-cli
+
+- name: "Packages - pip install"
+  include_role:
+    name: packages
+    tasks_from: install-pip
+  with_items:
+    - ansible[azure]
+    - docker
+    - docker-compose
+    - packaging
+    - paramiko
+    - pylint
+    - pytest
+    - pywinrm>=0.3.0
+    - requests
+    - setuptools
+    - virtualenv

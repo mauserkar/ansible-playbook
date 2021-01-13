@@ -1,8 +1,0 @@
----
-- name: clone repo
-  git: repo=
-      dest=
-      accept_hostkey=yes
-      force=yes
-      recursive=no
-      key_file=

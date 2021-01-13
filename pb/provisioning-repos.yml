@@ -1,7 +1,8 @@
 ---
-- name: Clone repo config
-  git:
-    repo: 'git@bitbucket.org:crauserkar/config.git'
-    dest: '{{ an_repos }}/config'
-    force: yes
-    accept_hostkey: yes
+- name:  Clone repo 
+  include_role:
+    name: repo
+  with_items:
+    - { repo_url: "git@bitbucket.org:crauserkar/config.git", repo_dest: "{{ an_repos }}/config" }
+    - { repo_url: "git@github.com:mauserkar/tools.git", repo_dest: "{{ an_repos }}/tools" }
+    - { repo_url: "git@github.com:mauserkar/ansible-playbook.git", repo_dest: "{{ an_repos }}/ansible-playbook" }

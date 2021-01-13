@@ -1,10 +1,10 @@
 ---
 - hosts: "{{ an_hosts }}"
   gather_facts: true
-  remote_user: "{{ an_user_deploy }}"               # user with access to vm
-  # vars_files:                                     # include by roles
-  #   - group_vars/all/general.yml                  # include by roles
-  #   - group_vars/all/secrets.yml                  # include by roles
+  remote_user: "{{ an_user_deploy }}"
+  # vars_files:                                     # include by default
+  #   - group_vars/all/general.yml                  # include by default
+  #   - group_vars/all/secrets.yml                  # include by default
   tasks:
     - name: Provisioning - config
       include: pb/provisioning-config.yml

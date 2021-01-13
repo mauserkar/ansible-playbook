@@ -1,0 +1,6 @@
+- name: gpg keys 
+  apt_key:
+    url: "{{ item }}"
+    state: present
+
+

@@ -1,0 +1,7 @@
+- name: "apt repo: {{ item }}"
+  apt_repository:
+    repo: "{{ item }}"
+
+- name: apt-get update
+  apt:
+    update_cache: yes
