@@ -15,5 +15,8 @@
     - name: Provisioning - users
       include: pb/provisioning-users.yml
 
+    - name: Provisioning - repos
+      include: pb/provisioning-repos.yml
+
 
 # ansible-playbook -e "an_hosts=${AN_HOSTS}" -e "an_user_deploy=${AN_USER_DEPLOY}" run-pb.yml

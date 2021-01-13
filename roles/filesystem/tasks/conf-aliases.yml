@@ -20,62 +20,13 @@
         export HISTFILE={{ an_log }}/history/history-$(whoami | awk '{print $1}' ; exit).log
         export PROMPT_COMMAND='history -a'
 
-        # Files
-        alias find_big="find . -type f -exec ls -s {} \; | sort -n -r | head -5"
-        alias find_locate='find . | grep'
-        alias execute='chmod +x'
-        alias kk='ls -lathr'
-        alias ls='ls --color=always'
-        alias ll='ls $LS_OPTIONS -lha'
-        alias sl='ls $LS_OPTIONS -lha'
-        
-        # Docker
-        alias d_ps='docker ps -a'
-        alias d_sa='docker stop $(docker ps -aq)'
-        alias d_ra='docker rm $(docker ps -aq)'
-        alias d_it='docker exec -it '
-        
-        # System
-        alias ram_info='free -m -l -t'
-        alias cpu_info='lscpu'
-        alias disc_info='df -h -x tmpfs -x devpts -x usbfs'
-        alias partition_info='lsblk -fm'
-        alias du='du -ch'
-        alias tailf='tail -f'
+        # Load custom alias
+        if [ -f ~/.bash_aliases_custom ]; then
+            . ~/.bash_aliases_custom
+        fi
 
-        # Mount
-        alias mount="mount | column -t"
-
-        # Python
-        alias py_requirements='pip freeze > requirements.txt'
-        py_env() {
-          if [ $1 ] ; then
-            NAME=$1
-            if [ -d /tmp/py-$NAME ] ; then
-              source source /tmp/py-$NAME/bin/activate
-            else
-              python -m venv /tmp/py-$NAME && source /tmp/py-$NAME/bin/activate
-            fi
-          else
-            python -m venv /tmp/py-venv-$(date +%H%M-%d%m%Y) && source /tmp/py-venv-$(date +%H%M-%d%m%Y)/bin/activate
-          fi
-        }
-
-        # Ansible
-        alias an_hello='ansible all -a "/bin/echo hello"'
-        alias an_ping='ansible -m ping'
-        an_fact() { ansible $1 -m setup; }
-        alias ap='ansible-playbook'
-        alias ap_d='ansible-playbook --diff'
-        alias ap_dc='ansible-playbook --diff --check'
-
-        # Networking
-        alias net_ip_private="ifconfig | grep inet | egrep -v 'inet6|127.0'"
-        alias net_ip_public='curl http://icanhazip.com/'
-        net_ip_geolocation () { curl ipinfo.io/$1; }
-        alias net_ip_tables_list="sudo /sbin/iptables -L -n -v --line-numbers"
-        alias net_ip_tables_input='sudo /sbin/iptables -L INPUT -n -v --line-numbers'
-        alias net_ip_tables_output='sudo /sbin/iptables -L OUTPUT -n -v --line-numbers'
-        alias net_ip_tables_forward='sudo /sbin/iptables -L FORWARD -n -v --line-numbers'
-        alias net_ports='netstat -tulanp'
-        net_check_open_port () { nc -z -v -w1 $1 $2; }
+        if [ -f ~/.bash_aliases_secrets ]; then
+            . ~/.bash_aliases_secrets
+            export REPO_CONFIG="~/repos/config"
+            export CLOUD_PATH="~/cloud"
+        fi
