@@ -1,0 +1,33 @@
+---
+- name: Backup config ssh
+  copy:
+    src: /etc/ssh/sshd_config
+    dest: /etc/ssh/sshd_config.bk
+    backup: yes
+
+- name: Remove config file
+  file: path=/etc/ssh/sshd_config state=absent
+
+- name: Set ssh configuration
+  blockinfile:
+    path: /etc/ssh/sshd_config
+    create: yes
+    backup: yes
+    block: |
+      ### Config SSH ###
+      
+      Port 1407
+      PermitRootLogin no
+      PasswordAuthentication no
+      PermitEmptyPasswords no
+      ChallengeResponseAuthentication no
+      UsePAM yes
+      X11Forwarding yes
+      PrintMotd no
+      AcceptEnv LANG LC_*
+      Subsystem	sftp	/usr/lib/openssh/sftp-server
+
+- name: Restart service SSH
+  service:
+    name: sshd
+    state: restarted

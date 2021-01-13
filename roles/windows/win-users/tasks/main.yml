@@ -1,0 +1,7 @@
+---
+#### TODO
+- name: add user 
+  win_user:
+    name: 
+    password: 
+    state: present

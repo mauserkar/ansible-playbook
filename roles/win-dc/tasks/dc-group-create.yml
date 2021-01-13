@@ -1,0 +1,5 @@
+---
+- name: Create domain dc-group-create
+  win_domain:
+    dns_domain_name: "{{domain_name}}.{{domain.ext}}"
+    safe_mode_password: "{{domain_password}}"

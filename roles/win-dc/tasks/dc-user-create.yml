@@ -1,0 +1,14 @@
+---
+- name: Create user to dc
+  win_domain_user:
+    name: "{{user_name}}"
+    firstname: "{{user_firstname}}"
+    surname: "{{user_surname}}"
+    password: "{{user_name}}"
+    mail: "{{user_name}}.{{user_firstname}}@{{domain_name}}.{{domain_ext}}"
+    update_password: on_create
+    password_never_expires: yes
+    domain_username: "{{ domain_name | upper }}\{{domain_admin}}"
+    domain_password: "{{domain_password}}"
+    domain_server: "{{domain_name}}.{{domain_ext}}""
+    state: present

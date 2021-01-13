@@ -1,0 +1,26 @@
+---
+### TODO
+  # - os version
+  # - docker compose version
+- name: add repository docker
+  shell: curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg | sudo apt-key add -
+
+- name: add repository docker
+  shell: add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+
+- name: Run the equivalent of "apt-get update"
+  apt:
+    update_cache: yes
+
+- name: Install the package docker
+  apt: name={{item}} state=present
+  with_items:
+       - docker-ce
+       - docker-ce-cli
+       - containerd.io
+
+- name: Docker compose
+  shell: curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+
+- name: Docker compose
+  shell: chmod 777 /usr/local/bin/docker-compose

@@ -1,0 +1,27 @@
+---
+#### TODO
+# - name: Create domain
+#   win_domain:
+#     dns_domain_name: ansible.vagrant
+#     safe_mode_password: password123!
+
+- name: Ensure a server is a domain controller
+  win_domain_controller:
+    dns_domain_name: ansible.vagrant
+    domain_admin_user: testguy@ansible.vagrant
+    domain_admin_password: password123!
+    safe_mode_password: password123!
+    state: domain_controller
+    log_path: C:\ansible_win_domain_controller.txt
+
+- name: Install IIS Web-Server with sub features and management tools
+  win_feature:
+    name: Web-Server
+    state: present
+    include_sub_features: yes
+    include_management_tools: yes
+  register: win_feature
+
+- name: Reboot if installing Web-Server feature requires it
+  win_reboot:
+  when: win_feature.reboot_required

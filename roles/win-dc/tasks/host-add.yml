@@ -1,0 +1,15 @@
+---
+# Set dns host before execute this role
+- name: Add host to dc
+  win_domain_membership:
+    dns_domain_name: "{{domain_name}}.{{domain_ext}}"
+    hostname: "{{host_name}}"
+    domain_admin_user: "{{ domain_name | upper }}\{{domain_admin}}"
+    domain_admin_password: "{{domain_ext}}"
+    #domain_ou_path: "OU=Windows,OU=Servers,DC=ansible,DC=vagrant"
+    state: domain
+  register: domain_state
+
+- name: Reboot
+  win_reboot:
+  when: domain_state.reboot_required

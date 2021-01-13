@@ -1,0 +1,15 @@
+---
+- name: Clone config repo
+  git: repo=git@bitbucket.org:crauserkar/config.git
+      dest=/opt/setup-ansible/repos/config
+      accept_hostkey=yes
+      force=yes
+      recursive=no
+      # key_file=
+
+- name: Clone config repo
+  git: repo=git@github.com:mauserkar/tools.git
+      dest=/opt/setup-ansible/repos/tools
+      accept_hostkey=yes
+      force=yes
+      recursive=no

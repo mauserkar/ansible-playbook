@@ -1,0 +1,13 @@
+---
+- name: Set dns 
+  win_dns_client:
+    adapter_names: '*'
+    ipv4_addresses:
+    - "{{dns_main}}"
+    - "{{dns_second}}"
+    log_path: C:\dns_log.txt
+
+# - name: Configure all adapters whose names begin with Ethernet to use DHCP-assigned DNS values
+#   win_dns_client:
+#     adapter_names: 'Ethernet*'
+#     ipv4_addresses: []
